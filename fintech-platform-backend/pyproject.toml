@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "fintech-platform-backend"
+version = "0.1.0"
+description = ""
+authors = ["Matheus Benediht <matheusbenediht@gmail.com>"]
+
+#scripts taskipy
+[tool.taskipy.tasks]
+run = 'fastapi dev fintech_platform_backend/app.py'
+test = 'pytest -s -x --cov=fintech_platform_backend -vv'
+post_test = 'coverage html'
+
+#configurações do pytest
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts= '-p no:warnings'
+
+#dependencias
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = {extras = ["standard"], version = "^0.115.5"}
+
+#dependencias dev
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+pytest-cov = "^6.0.0"
+taskipy = "^1.14.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
